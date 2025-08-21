@@ -48,7 +48,7 @@ export default function Contact() {
               <p className="mb-4 text-sm text-white/70">
                 Let&apos;s network professionally
               </p>
-              <a href="https://www.linkedin.com/in/your-linkedin-username/" target="_blank" rel="noopener noreferrer">
+              <a href="https://www.linkedin.com/in/agamjeet-padda/" target="_blank" rel="noopener noreferrer">
                 <GsapButton
                   text="Visit LinkedIn"
                   startColor="#ffffff"
