@@ -1,0 +1,5 @@
+Contact: mailto:paddaagamjeetsingh@gmail.com
+Expires: 2025-12-31T23:59:59.000Z
+Preferred-Languages: en
+Canonical: https://agamjeet.in/.well-known/security.txt
+Policy: https://agamjeet.in/security-policy

@@ -1,0 +1,39 @@
+{
+  "name": "Agamjeet Singh Padda - AI Developer & Data Scientist",
+  "short_name": "Agamjeet Padda",
+  "description": "Expert AI Developer and Data Scientist specializing in Machine Learning, Deep Learning, and Data Science",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#ffffff",
+  "theme_color": "#36d1dc",
+  "orientation": "portrait-primary",
+  "icons": [
+    {
+      "src": "/favi.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "/favi.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ],
+  "categories": ["business", "productivity", "technology"],
+  "lang": "en",
+  "dir": "ltr",
+  "scope": "/",
+  "prefer_related_applications": false,
+  "related_applications": [],
+  "screenshots": [
+    {
+      "src": "/ME.jpg",
+      "sizes": "1280x720",
+      "type": "image/jpeg",
+      "form_factor": "wide",
+      "label": "Agamjeet Singh Padda Portfolio"
+    }
+  ]
+}

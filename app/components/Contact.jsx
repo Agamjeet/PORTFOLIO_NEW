@@ -29,7 +29,7 @@ export default function Contact() {
               <p className="mb-4 text-sm text-white/70">
                 Quickest way to get in touch
               </p>
-              <a href="mailto:contact@agamjeet.in">
+              <a href="mailto:paddaagamjeetsingh@gmail.com">
                 <GsapButton
                   text="Send Email"
                   startColor="#ffffff"
