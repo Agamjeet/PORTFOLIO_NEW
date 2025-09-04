@@ -18,7 +18,7 @@ export default function About() {
             <p className="text-lg leading-relaxed text-gray-700">
               Specializing in AI, data science, and software development, I focus on automating complex tasks and optimizing systems. I aim to create impactful AI-powered applications and SaaS products while pursuing entrepreneurship. Outside of tech, I love traveling and exploring new places.
             </p>
-            <a href="https://drive.google.com/file/d/14pG9nVLvpjBt6eRVvBcLFUbPKASy53Si/view?usp=sharing" target="_blank" rel="noopener noreferrer">
+            <a href="https://drive.google.com/file/d/1zC_cOOF1YzwwJQgd-NTtnMGX6O7qmgH_/view?usp=sharing" target="_blank" rel="noopener noreferrer">
               <GsapButton
                 text="View Resume"
                 startColor="#ffffff"
