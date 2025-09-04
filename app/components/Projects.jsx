@@ -1,288 +1,201 @@
 'use client';
 
-import { useState, useMemo, useEffect, useRef } from 'react';
 import { motion } from 'framer-motion';
-import AICard from './AICard';
-import SearchCard from './SearchCard';
-import VisionCard from './VisionCard';
-import CreativeCard from './CreativeCard';
-import AnalyticsCard from './AnalyticsCard';
+import Image from 'next/image';
+import RadialFillButton from './GsapButton';
 
 const projects = [
   { 
     id: 1, 
-    title: "AI EOB Extractor", 
-    desc: "Advanced OCR and NLP system that extracts structured data from Explanation of Benefits documents. Uses computer vision to identify key fields and natural language processing to parse medical terminology.", 
-    img: "/project1.png",
-    category: "AI/ML",
-    technologies: ["Python", "TensorFlow", "OpenCV", "NLP"],
-    github: "https://github.com/yourusername/eob-extractor",
-    live: "https://eob-extractor.com",
-    cardType: "ai-card"
+    title: "QuizKraft", 
+    description: "An interactive quiz platform that makes learning fun and engaging. Create, share, and take quizzes with a modern, user-friendly interface. <span class='font-bold text-blue-600'>Live website with AI-powered quiz generation</span>.", 
+    image: "/quiz.png",
+    technologies: ["React", "Node.js", "MongoDB", "Auth.js", "Stripe.js", "OpenAI API"],
+    github: "https://github.com/Agamjeet/wihslist_qna",
+    live: "https://quizkraft.in"
   },
   { 
     id: 2, 
-    title: "RAG Search Engine", 
-    desc: "Retrieval-Augmented Generation search system built with vector databases and large language models. Provides accurate, contextual responses by combining real-time data retrieval with AI generation.", 
-    img: "/project2.png",
-    category: "Backend",
-    technologies: ["Node.js", "Pinecone", "OpenAI", "FastAPI"],
-    github: "https://github.com/yourusername/rag-search",
-    live: "https://rag-search.com",
-    cardType: "search-card"
+    title: "Discord E-commerce Support Bot", 
+    description: "A Discord bot developed in collaboration with an e-commerce company to provide automated customer support. The bot is trained on the company's database using <span class='font-bold text-purple-600'>embeddings and AI</span> to deliver accurate and context-aware responses.", 
+    image: "/discord.png",
+    technologies: ["Discord.js", "Node.js", "MongoDB", "OpenAI API", "Embeddings"],
+    github: "https://github.com/Agamjeet/disco_bot",
+    live: null
   },
   { 
     id: 3, 
-    title: "Document Classifier", 
-    desc: "Computer vision model for automatic document classification and routing. Uses deep learning to categorize invoices, contracts, receipts, and other business documents with high accuracy.", 
-    img: "/project3.png",
-    category: "Computer Vision",
-    technologies: ["Python", "PyTorch", "FastAPI", "Docker"],
-    github: "https://github.com/yourusername/doc-classifier",
-    live: "https://doc-classifier.com",
-    cardType: "vision-card"
+    title: "Notion Project Automation Bot", 
+    description: "A Notion automation bot developed in collaboration with an <span class='font-bold text-green-600'>educator in Singapore</span> to streamline project management. Automatically generates and populates Notion pages for technical projects using <span class='font-bold text-orange-600'>AI (Gemini, Claude)</span> and PDF design documents. The bot reads project requirements, creates comprehensive documentation including background info, engineering designs, project plans, and daily content - <span class='font-bold text-red-600'>turning hours of manual work into minutes of automated processing</span>.", 
+    image: "/notion.png",
+    technologies: ["Python", "Notion API", "Claude AI", "Gemini AI", "PDF Processing"],
+    github: "https://github.com/Agamjeet/notion-bot-",
+    live: null
   },
   { 
     id: 4, 
-    title: "Creative AI Platform", 
-    desc: "SaaS platform that generates custom marketing images using AI. Features include brand customization, template library, and integration with popular design tools and social media platforms.", 
-    img: "/project4.png",
-    category: "SaaS",
-    technologies: ["React", "Stable Diffusion", "Stripe", "AWS"],
-    github: "https://github.com/yourusername/creative-ai",
-    live: "https://creative-ai.com",
-    cardType: "creative-card"
+    title: "WhatsApp Reminder Bot", 
+    description: "A WhatsApp bot that sends event reminders from an iCloud calendar and collects responses. Developed in collaboration with a <span class='font-bold text-blue-600'>doctor and currently being used in their clinic</span> to automate appointment scheduling and confirmation workflows.", 
+    image: "/whatsapp.png",
+    technologies: ["JavaScript", "Node.js", "WhatsApp Web", "iCloud Calendar"],
+    github: "https://github.com/Agamjeet/whatsapp_bot",
+    live: null
   },
   { 
     id: 5, 
-    title: "Real-time Analytics", 
-    desc: "Real-time data analytics dashboard with streaming capabilities. Processes millions of events per second and provides interactive visualizations for business intelligence and monitoring.", 
-    img: "/project5.png",
-    category: "Data Science",
-    technologies: ["Kafka", "Elasticsearch", "D3.js", "Kubernetes"],
-    github: "https://github.com/yourusername/analytics-dashboard",
-    live: "https://analytics-dashboard.com",
-    cardType: "analytics-card"
+    title: "TextSnap Chrome Extension", 
+    description: "A fun Chrome extension that transforms any selected text into beautiful images with multiple themes. Select text on any website, right-click, and create stunning visual content in seconds. <span class='font-bold text-purple-600'>Commercial product available for purchase</span> - perfect for social media sharing and content creation.", 
+    image: "/T.png",
+    technologies: ["Chrome Extension", "JavaScript", "CSS", "HTML"],
+    github: null,
+    live: "https://agams.gumroad.com/l/textsnap"
+  },
+  { 
+    id: 6, 
+    title: "Local Llama AI Assistant", 
+    description: "A Streamlit web application that combines chat functionality with <span class='font-bold text-orange-600'>Llama 3.2 and OCR capabilities</span> using Llama 3.2 Vision for text extraction from images.", 
+    image: "/llama.png",
+    technologies: ["Python", "Streamlit", "Ollama", "Llama 3.2", "OCR"],
+    github: "https://github.com/Agamjeet/local_llama",
+    live: null
+  },
+  { 
+    id: 7, 
+    title: "Multilingual STT & TTS", 
+    description: "A Streamlit web application that provides multilingual Speech-to-Text and Text-to-Speech capabilities using <span class='font-bold text-blue-600'>Google Cloud APIs with support for 10+ Indian languages</span>.", 
+    image: "/tts.png",
+    technologies: ["Python", "Streamlit", "Google Cloud", "STT", "TTS"],
+    github: "https://github.com/Agamjeet/STT-TTS",
+    live: null
+  },
+  { 
+    id: 8, 
+    title: "Don't Press The Button", 
+    description: "A digital detox app inspired by the <span class='font-bold text-red-600'>Red Button Experiment</span>. Challenge yourself to resist the urge to check your phone and build real patience through mindful awareness.", 
+    image: "/app.jpg",
+    technologies: ["React Native", "Expo", "AsyncStorage", "JavaScript"],
+    github: "https://github.com/Agamjeet/Dont-Press",
+    live: null
   }
 ];
 
-export default function Projects() {
-  const [flipped, setFlipped] = useState({});
-  const [cardOrder, setCardOrder] = useState(projects);
-  const [dealtCards, setDealtCards] = useState(new Set());
-  const [hasDealt, setHasDealt] = useState(false);
-  const sectionRef = useRef(null);
-
-  // Generate consistent random positions for each card
-  const cardPositions = useMemo(() => {
-    return projects.map(project => ({
-      id: project.id,
-      rotation: (Math.random() - 0.5) * 10, // -5 to +5 degrees (less rotation)
-      offset: (Math.random() - 0.5) * 20, // -10px to +10px (less offset)
-      top: Math.random() * 60 + 15, // 15% - 75% from top (more centered)
-      left: Math.random() * 60 + 15, // 15% - 75% from left (more centered)
-    }));
-  }, []);
-
-  // Deal cards animation on scroll
-  useEffect(() => {
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting && !hasDealt) {
-            setHasDealt(true);
-            dealCards();
-          }
-        });
-      },
-      { threshold: 0.3 } // Trigger when 30% of section is visible
-    );
-
-    if (sectionRef.current) {
-      observer.observe(sectionRef.current);
-    }
-
-    return () => observer.disconnect();
-  }, [hasDealt]);
-
-  const dealCards = async () => {
-    for (let i = 0; i < projects.length; i++) {
-      await new Promise(resolve => setTimeout(resolve, 200)); // 200ms delay between each card
-      setDealtCards(prev => new Set([...prev, projects[i].id]));
-    }
-  };
-
-  const toggleFlip = (id) => {
-    setFlipped((prev) => ({ ...prev, [id]: !prev[id] }));
-  };
-
-  // Custom card content functions
-  const customFrontContent = (project) => (
-    <div className="flex flex-col items-center">
-      <div className="text-6xl mb-6">♠️</div>
-      <h3 className="text-4xl font-extrabold tracking-tight mb-4 text-center leading-tight">
-        {project.title}
-      </h3>
-      <div className="text-lg font-medium opacity-90">
-        {project.category}
-      </div>
-    </div>
-  );
-
-  const customBackContent = (project) => (
-    <>
-      {/* Project Image/Placeholder */}
-      <div className="w-full h-48 bg-white/20 rounded-2xl mb-6 overflow-hidden">
-        {project.img ? (
-          <img
-            src={project.img}
-            alt={project.title}
-            className="w-full h-full object-cover"
-          />
-        ) : (
-          <div className="w-full h-full flex items-center justify-center bg-white/10">
-            <span className="text-white text-sm font-medium">Project Image</span>
-          </div>
-        )}
-      </div>
-      {/* Title and Description */}
-      <h3 className="text-2xl font-bold text-white mb-3">{project.title}</h3>
-      <p className="text-white/90 text-base leading-relaxed">{project.desc}</p>
-      {/* Technologies */}
-      <div className="flex flex-wrap gap-2 mt-4 mb-6">
-        {project.technologies.map((tech) => (
-          <span key={tech} className="px-3 py-1 bg-white/20 text-white text-sm rounded-full">
-            {tech}
+// Helper function to render description with highlights
+const renderDescription = (description) => {
+  const parts = description.split(/(<span[^>]*>.*?<\/span>)/g);
+  return parts.map((part, index) => {
+    if (part.startsWith('<span')) {
+      const match = part.match(/<span[^>]*class=['"]([^'"]*)['"][^>]*>(.*?)<\/span>/);
+      if (match) {
+        const [, className, text] = match;
+        return (
+          <span key={index} className={className}>
+            {text}
           </span>
-        ))}
-      </div>
-      {/* Links */}
-      <div className="space-y-3">
-        <a 
-          href={project.github} 
-          target="_blank" 
-          rel="noopener noreferrer"
-          className="block w-full px-4 py-2 bg-white/20 text-white text-center rounded-lg hover:bg-white/30 transition-colors"
-          onClick={(e) => e.stopPropagation()}
-        >
-          GitHub
-        </a>
-        <a 
-          href={project.live} 
-          target="_blank" 
-          rel="noopener noreferrer"
-          className="block w-full px-4 py-2 bg-white/20 text-white text-center rounded-lg hover:bg-white/30 transition-colors"
-          onClick={(e) => e.stopPropagation()}
-        >
-          Live Demo
-        </a>
-      </div>
-      {/* Instructions */}
-      <div className="mt-6 flex items-center justify-between text-xs text-white/70">
-        <span className="flex items-center space-x-1">
-          <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-            <line x1="8" y1="6" x2="21" y2="6"></line>
-            <line x1="8" y1="12" x2="21" y2="12"></line>
-            <line x1="8" y1="18" x2="21" y2="18"></line>
-            <line x1="3" y1="6" x2="3.01" y2="6"></line>
-            <line x1="3" y1="12" x2="3.01" y2="12"></line>
-            <line x1="3" y1="18" x2="3.01" y2="18"></line>
-          </svg>
-          <span>Reorder with drag</span>
-        </span>
-        <span className="flex items-center space-x-1">
-          <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-            <polyline points="15 3 21 3 21 9"></polyline>
-            <polyline points="9 21 3 21 3 15"></polyline>
-            <line x1="21" y1="3" x2="14" y2="10"></line>
-            <line x1="3" y1="21" x2="10" y2="14"></line>
-          </svg>
-          <span>Click to flip</span>
-        </span>
-      </div>
-    </>
-  );
+        );
+      }
+    }
+    return part;
+  });
+};
 
+export default function Projects() {
   return (
-    <section ref={sectionRef} id="projects" className="relative min-h-screen">
+    <section id="projects" className="py-20">
       <div className="container mx-auto px-4">
         <div className="text-center mb-16">
           <h2 className="text-4xl font-bold mb-4 text-gray-800">My Projects</h2>
           <p className="text-lg text-gray-600 max-w-2xl mx-auto">
-            Interactive project cards - click to flip for more details.
+            Here are some of the projects I've worked on recently.
           </p>
         </div>
 
-        {/* Scatter zone */}
-        <div className="relative w-full h-[90vh]">
-          {cardOrder.map((project, index) => {
-            const position = cardPositions.find(pos => pos.id === project.id);
-            const isFlipped = flipped[project.id];
-            const isDealt = dealtCards.has(project.id);
-
-            // Render appropriate custom card based on cardType
-            const renderCustomCard = () => {
-              switch (project.cardType) {
-                case 'ai-card':
-                  return <AICard project={project} isFlipped={isFlipped} onFlip={toggleFlip} />;
-                case 'search-card':
-                  return <SearchCard project={project} isFlipped={isFlipped} onFlip={toggleFlip} />;
-                case 'vision-card':
-                  return <VisionCard project={project} isFlipped={isFlipped} onFlip={toggleFlip} />;
-                case 'creative-card':
-                  return <CreativeCard project={project} isFlipped={isFlipped} onFlip={toggleFlip} />;
-                case 'analytics-card':
-                  return <AnalyticsCard project={project} isFlipped={isFlipped} onFlip={toggleFlip} />;
-                default:
-                  return <AICard project={project} isFlipped={isFlipped} onFlip={toggleFlip} />;
-              }
-            };
-
-            return (
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 items-start">
+          {projects.map((project, index) => (
               <motion.div
                 key={project.id}
-                className="absolute cursor-grab active:cursor-grabbing"
-                style={{ 
-                  top: `${position.top}%`, 
-                  left: `${position.left}%` 
-                }}
-                initial={{
-                  scale: 0.8,
-                  opacity: 0,
-                  rotate: 0,
-                }}
-                animate={isDealt ? {
-                  scale: 1,
-                  opacity: 1,
-                  rotate: position.rotation,
-                } : {
-                  scale: 0.8,
-                  opacity: 0,
-                }}
-                transition={{
-                  duration: 0.6,
-                  ease: "easeOut",
-                  delay: index * 0.2
-                }}
-                drag
-                dragMomentum={false}
-                dragElastic={0.1}
-                whileDrag={{
-                  scale: 1.1,
-                  rotate: 0,
-                  zIndex: 1000,
-                }}
-                onDragEnd={(event, info) => {
-                  // Update card position after drag
-                  const newTop = (info.point.y / window.innerHeight) * 100;
-                  const newLeft = (info.point.x / window.innerWidth) * 100;
-                  // You could store these positions in state if needed
-                }}
-              >
-                {renderCustomCard()}
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5, delay: index * 0.1 }}
+              viewport={{ once: true }}
+              className={`bg-white rounded-lg shadow-lg overflow-hidden hover:shadow-xl transition-all duration-300 h-full flex flex-col ${
+                project.id === 1 ? 'border-4 border-blue-500 hover:border-purple-500' :
+                project.id === 2 ? 'border-4 border-indigo-500 hover:border-indigo-600' :
+                project.id === 3 ? 'border-4 border-emerald-500 hover:border-emerald-600' :
+                project.id === 4 ? 'border-4 border-green-500 hover:border-green-600' :
+                project.id === 5 ? 'border-4 border-orange-500 hover:border-orange-600' :
+                project.id === 6 ? 'border-4 border-amber-500 hover:border-amber-600' :
+                project.id === 7 ? 'border-4 border-cyan-500 hover:border-cyan-600' :
+                project.id === 8 ? 'border-4 border-red-500 hover:border-red-600' :
+                'border-2 border-gray-200'
+              }`}
+            >
+              {/* Project Image */}
+              <div className="h-48 bg-gray-100 overflow-hidden relative">
+                {project.image ? (
+                  <Image
+                    src={project.image}
+                    alt={project.title}
+                    width={400}
+                    height={192}
+                    className={`w-full h-full object-center hover:scale-105 transition-transform duration-300 ${[2, 3, 4, 5, 6, 7, 8].includes(project.id) ? 'object-contain' : 'object-cover'}`}
+                    onError={(e) => {
+                      e.target.style.display = 'none';
+                      e.target.nextSibling.style.display = 'flex';
+                    }}
+                  />
+                ) : null}
+                <div className="w-full h-full flex items-center justify-center bg-gradient-to-br from-blue-400 to-purple-500" style={{display: project.image ? 'none' : 'flex'}}>
+                  <span className="text-white text-lg font-semibold">Project Image</span>
+                </div>
+              </div>
+
+              {/* Project Content */}
+              <div className="p-6 flex flex-col flex-grow">
+                <h3 className="text-xl font-bold text-gray-800 mb-3">{project.title}</h3>
+                <div className="text-gray-600 mb-4 leading-relaxed flex-grow">
+                  {renderDescription(project.description)}
+                </div>
+                
+                {/* Technologies */}
+                <div className="flex flex-wrap gap-2 mb-6">
+                  {project.technologies.map((tech) => (
+                    <span 
+                      key={tech} 
+                      className="px-3 py-1 bg-gray-100 text-gray-700 text-sm rounded-full"
+                    >
+                      {tech}
+                    </span>
+                  ))}
+                </div>
+
+                {/* Links */}
+                <div className="flex gap-3 mt-auto">
+                  {project.github && (
+                    <RadialFillButton
+                      text="GitHub"
+                      startColor="#f8f9fa"
+                      fillColor="#24292e"
+                      textColor="#24292e"
+                      fillTextColor="#ffffff"
+                      size="small"
+                      onClick={() => window.open(project.github, '_blank')}
+                    />
+                  )}
+                  {project.live && (
+                    <RadialFillButton
+                      text="Live Demo"
+                      startColor="#f8f9fa"
+                      fillColor="#0066cc"
+                      textColor="#0066cc"
+                      fillTextColor="#ffffff"
+                      size="small"
+                      onClick={() => window.open(project.live, '_blank')}
+                    />
+                  )}
+                </div>
+              </div>
               </motion.div>
-            );
-          })}
+          ))}
         </div>
       </div>
     </section>

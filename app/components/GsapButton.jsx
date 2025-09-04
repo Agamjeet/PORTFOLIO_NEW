@@ -8,7 +8,8 @@ export default function RadialFillButton({
   fillColor = "#000000",
   textColor = "#000000",
   fillTextColor = "#ffffff",
-  size = "default"
+  size = "default",
+  onClick = () => {}
 }) {
   const btnRef = useRef(null);
   const circleRef = useRef(null);
@@ -72,6 +73,7 @@ export default function RadialFillButton({
       onMouseEnter={handleEnter}
       onMouseMove={handleMove}
       onMouseLeave={handleLeave}
+      onClick={onClick}
       className={`relative overflow-hidden rounded-lg font-bold border-2 border-white/30 ${sizeClasses[size]}`}
       style={{
         backgroundColor: startColor,
