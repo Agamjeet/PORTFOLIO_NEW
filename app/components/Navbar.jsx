@@ -58,11 +58,12 @@ export default function Navbar() {
       <div className="navbar-end">
         <a href="#contact" className="hover:scale-105 transition-transform">
           <GsapButton
-            text="Get in touch"
+            text="Contact"
             startColor="#ffffff"
             fillColor="#3b82f6"
             textColor="#3b82f6"
             fillTextColor="#ffffff"
+            size="small"
           />
         </a>
       </div>

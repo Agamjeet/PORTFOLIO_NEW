@@ -15,7 +15,8 @@ export default function RadialFillButton({
   const circleRef = useRef(null);
 
   const sizeClasses = {
-    small: "px-6 py-3 text-base w-[200px] h-[50px]",
+    xs: "px-3 py-2 text-sm w-[120px] h-[40px]",
+    small: "px-3 py-2 text-sm w-[120px] h-[40px] sm:px-6 sm:py-3 sm:text-base sm:w-[200px] sm:h-[50px]",
     default: "px-8 py-4 text-lg w-[280px] h-[60px]",
     large: "px-8 py-4 text-lg w-[320px] h-[80px]"
   };
