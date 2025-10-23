@@ -42,18 +42,18 @@ export default function Sisyphus() {
     if (isMobile) {
       return {
         x: 15 + (position * 0.3), // Smaller movement on mobile
-        y: 70 - (position * 0.15)  // Adjusted for mobile height
+        y: 180 - (position * 0.15)  // Start lower on mobile (180px from top)
       };
     } else if (isTablet) {
       return {
         x: 45 + (position * 0.4),
-        y: 50 - (position * 0.18)
+        y: 200 - (position * 0.18)  // Start lower on tablet too
       };
     }
     // Desktop fallback
     return {
       x: 90 + (position * 0.5),
-      y: 580 - (position * 0.2)
+      y: 400 - (position * 0.2)  // Adjusted for lg:h-96 (384px) container
     };
   };
 
