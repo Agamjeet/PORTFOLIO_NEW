@@ -76,8 +76,8 @@ export default function Hero() {
          animate={{ y: [0, -20, 0], x: [0, 25, 0] }}
          transition={{ duration: 3.8, repeat: Infinity, ease: "easeInOut" }}
        />
-
-      {/* Easter Egg: Clickable Sisyphus */}
+{/* 
+      Easter Egg: Clickable Sisyphus (Disabled for now)
       <a 
         href="/sisyphus" 
         className="absolute top-20 right-10 z-20 hover:scale-110 transition-transform duration-300"
@@ -89,7 +89,8 @@ export default function Hero() {
           className="w-16 h-16 cursor-pointer"
           style={{ imageRendering: 'pixelated' }}
         />
-      </a>
+      </a> 
+      */}
 
       {/* Hero Content */}
       <div className="hero-content text-center relative z-10">
