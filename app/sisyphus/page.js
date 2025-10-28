@@ -53,7 +53,7 @@ export default function Sisyphus() {
     // Desktop fallback
     return {
       x: 90 + (position * 0.5),
-      y: 400git s - (position * 0.2)  // Adjusted for lg:h-96 (384px) container
+      y: 400- (position * 0.2)  // Adjusted for lg:h-96 (384px) container
     };
   };
 
